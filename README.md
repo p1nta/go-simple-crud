@@ -69,10 +69,16 @@ This is a simple CRUD (Create, Read, Update, Delete) application built in Go usi
 4. **Update a todo**:
 
    ```bash
-   curl -X PATCH -H "Content-Type: application/json" -d '{"item": "Buy groceries", "completed": true}' http://localhost:9090/todos/1
+   curl -X PUT -H "Content-Type: application/json" -d '{"item": "Buy groceries", "completed": true}' http://localhost:9090/todos/1
    ```
 
-5. **Delete a todo**:
+5. **Update a todo completed status**:
+
+   ```bash
+   curl -X PUTCH http://localhost:9090/todos/1
+   ```
+
+6. **Delete a todo**:
 
    ```bash
    curl -X DELETE http://localhost:9090/todos/1
