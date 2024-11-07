@@ -72,7 +72,7 @@ This is a simple CRUD (Create, Read, Update, Delete) application built in Go usi
    curl -X PUT -H "Content-Type: application/json" -d '{"item": "Buy groceries", "completed": true}' http://localhost:9090/todos/1
    ```
 
-5. **Update a todo completed status**:
+5. **Update todo's completed status**:
 
    ```bash
    curl -X PUTCH http://localhost:9090/todos/1
