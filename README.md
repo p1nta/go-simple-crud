@@ -33,3 +33,51 @@ This is a simple CRUD (Create, Read, Update, Delete) application built in Go usi
    git clone https://github.com/your-username/go-simple-crud.git
    cd go-simple-crud
    ```
+
+2. **Install dependencies**:
+
+   ```bash
+   go mod download
+   ```
+
+3. **Run the application**:
+
+   ```bash
+   go run main.go
+   ```
+
+### Usage
+
+1. **Create a new todo**:
+
+   ```bash
+   curl -X POST -H "Content-Type: application/json" -d '{"item": "Buy groceries", "completed": false}' http://localhost:9090/todos
+   ```
+
+2. **Retrieve all todos**:
+
+   ```bash
+   curl http://localhost:9090/todos
+   ```
+
+3. **Retrieve a specific todo**:
+
+   ```bash
+   curl http://localhost:9090/todos/1
+   ```
+
+4. **Update a todo**:
+
+   ```bash
+   curl -X PATCH -H "Content-Type: application/json" -d '{"item": "Buy groceries", "completed": true}' http://localhost:9090/todos/1
+   ```
+
+5. **Delete a todo**:
+
+   ```bash
+   curl -X DELETE http://localhost:9090/todos/1
+   ```
+
+## License
+
+This project is licensed under the MIT License.
