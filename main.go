@@ -60,7 +60,7 @@ func getTodos(context *gin.Context) {
 func createTodo(context *gin.Context) {
 	var todo todo
 	if err := context.ShouldBindJSON(&todo); err != nil {
-		context.JSON(http.StatusNotFound, gin.H{"error": "invalid data"})
+		context.JSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
 		return
 	}
 	todo.ID = generateID()
@@ -91,7 +91,7 @@ func updateTodo(context *gin.Context) {
 
 	var todoData todo
 	if err := context.ShouldBindJSON(&todoData); err != nil {
-		context.JSON(http.StatusNotFound, gin.H{"error": "invalid data"})
+		context.JSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
 		return
 	}
 
