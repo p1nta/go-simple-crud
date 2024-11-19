@@ -63,6 +63,12 @@ func createTodo(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
 		return
 	}
+
+	if todo.Item == "" {
+		context.JSON(http.StatusBadRequest, gin.H{"error": "Item is required"})
+		return
+	}
+
 	todo.ID = generateID()
 	todos = append(todos, todo)
 	context.IndentedJSON(http.StatusCreated, todo)
@@ -137,5 +143,5 @@ func main() {
 	router.PATCH("/todos/:id", toggleTodoStatus)
 	router.PUT("/todos/:id", updateTodo)
 	router.DELETE("/todos/:id", deleteTodo)
-	router.Run("localhost:9090")
+	router.Run("localhost:9191")
 }
