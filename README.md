@@ -30,7 +30,7 @@ This is a simple CRUD (Create, Read, Update, Delete) application built in Go usi
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/go-simple-crud.git
+   git clone https://github.com/aleksandr-slobodian/go-simple-crud
    cd go-simple-crud
    ```
 
@@ -42,8 +42,16 @@ This is a simple CRUD (Create, Read, Update, Delete) application built in Go usi
 
 3. **Run the application**:
 
+   with go:
+
    ```bash
    go run main.go
+   ```
+
+   with [Air - Live reload](https://github.com/air-verse/air):
+
+   ```bash
+   air
    ```
 
 ### Usage
