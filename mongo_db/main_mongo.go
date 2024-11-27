@@ -21,7 +21,7 @@ type Todo struct {
 
 var collection *mongo.Collection
 
-func getTodo(ginContext *gin.Context) {
+func getTodoDB(ginContext *gin.Context) {
 	id := ginContext.Param("id")
 	fmt.Println(id)
 	objectId, err := primitive.ObjectIDFromHex(id)
@@ -48,7 +48,7 @@ func getTodo(ginContext *gin.Context) {
 	ginContext.IndentedJSON(http.StatusOK, todoLocal)
 }
 
-func getTodos(ginContext *gin.Context) {
+func getTodosDB(ginContext *gin.Context) {
 	var todos []Todo
 
 	cursor, err := collection.Find(context.Background(), bson.M{})
@@ -77,7 +77,7 @@ func getTodos(ginContext *gin.Context) {
 	ginContext.IndentedJSON(http.StatusOK, todos)
 }
 
-func createTodo(ginContext *gin.Context) {
+func createTodoDB(ginContext *gin.Context) {
 	var todo Todo
 	if err := ginContext.ShouldBindJSON(&todo); err != nil {
 		ginContext.JSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
@@ -100,7 +100,7 @@ func createTodo(ginContext *gin.Context) {
 	ginContext.IndentedJSON(http.StatusCreated, todo)
 }
 
-func toggleTodoStatus(ginContext *gin.Context) {
+func toggleTodoStatusDB(ginContext *gin.Context) {
 	id := ginContext.Param("id")
 	objectId, err := primitive.ObjectIDFromHex(id)
 
@@ -134,7 +134,7 @@ func toggleTodoStatus(ginContext *gin.Context) {
 	ginContext.IndentedJSON(http.StatusOK, todo)
 }
 
-func updateTodo(ginContext *gin.Context) {
+func updateTodoDB(ginContext *gin.Context) {
 	id := ginContext.Param("id")
 	objectId, err := primitive.ObjectIDFromHex(id)
 
@@ -168,7 +168,7 @@ func updateTodo(ginContext *gin.Context) {
 	ginContext.IndentedJSON(http.StatusOK, todoLocal)
 }
 
-func deleteTodo(ginContext *gin.Context) {
+func deleteTodoDB(ginContext *gin.Context) {
 	id := ginContext.Param("id")
 	objectId, err := primitive.ObjectIDFromHex(id)
 
@@ -204,7 +204,7 @@ func deleteTodo(ginContext *gin.Context) {
 }
 
 func main() {
-	MONGODB_URI := "mongodb+srv://crispworm:f7d6iJ1sHQEDIgnX@cluster0.t3xsp.mongodb.net/golang_db?retryWrites=true&w=majority&appName=Cluster0"
+	MONGODB_URI := "mongodb+srv://qm0uFsC65I2ZUZCt:qm0uFsC65I2ZUZCt@cluster0.t3xsp.mongodb.net/golang_db?retryWrites=true&w=majority&appName=Cluster0"
 	clientOption := options.Client().ApplyURI(MONGODB_URI)
 	client, err := mongo.Connect(context.Background(), clientOption)
 
@@ -223,12 +223,12 @@ func main() {
 	collection = client.Database("golang_db").Collection("todos")
 
 	router := gin.Default()
-	router.GET("/todos", getTodos)
-	router.POST("/todos", createTodo)
-	router.GET("/todos/:id", getTodo)
-	router.PATCH("/todos/:id", toggleTodoStatus)
-	router.PUT("/todos/:id", updateTodo)
-	router.DELETE("/todos/:id", deleteTodo)
+	router.GET("/todos", getTodosDB)
+	router.POST("/todos", createTodoDB)
+	router.GET("/todos/:id", getTodoDB)
+	router.PATCH("/todos/:id", toggleTodoStatusDB)
+	router.PUT("/todos/:id", updateTodoDB)
+	router.DELETE("/todos/:id", deleteTodoDB)
 	router.Run("localhost:9191")
 
 	// Ensure we disconnected from DB
