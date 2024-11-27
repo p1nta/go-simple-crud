@@ -23,14 +23,11 @@ var collection *mongo.Collection
 
 func getTodoDB(ginContext *gin.Context) {
 	id := ginContext.Param("id")
-	fmt.Println(id)
 	objectId, err := primitive.ObjectIDFromHex(id)
-	fmt.Println(objectId)
 
 	if err != nil {
 		ginContext.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
-	fmt.Println(objectId)
 
 	filter := bson.M{"_id": objectId}
 
@@ -204,7 +201,7 @@ func deleteTodoDB(ginContext *gin.Context) {
 }
 
 func main() {
-	MONGODB_URI := ""
+	MONGODB_URI := "mongodb+srv://qm0uFsC65I2ZUZCt:qm0uFsC65I2ZUZCt@cluster0.t3xsp.mongodb.net/golang_db?retryWrites=true&w=majority&appName=Cluster0"
 	clientOption := options.Client().ApplyURI(MONGODB_URI)
 	client, err := mongo.Connect(context.Background(), clientOption)
 
