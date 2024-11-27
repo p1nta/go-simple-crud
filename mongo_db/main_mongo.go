@@ -204,7 +204,7 @@ func deleteTodoDB(ginContext *gin.Context) {
 }
 
 func main() {
-	MONGODB_URI := "mongodb+srv://qm0uFsC65I2ZUZCt:qm0uFsC65I2ZUZCt@cluster0.t3xsp.mongodb.net/golang_db?retryWrites=true&w=majority&appName=Cluster0"
+	MONGODB_URI := ""
 	clientOption := options.Client().ApplyURI(MONGODB_URI)
 	client, err := mongo.Connect(context.Background(), clientOption)
 
